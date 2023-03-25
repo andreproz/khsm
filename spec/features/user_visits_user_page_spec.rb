@@ -8,18 +8,27 @@ RSpec.feature 'user views other profile', type: :feature do
       FactoryGirl.create(
         :game,
         user_id: first_user.id,
+        is_failed: true,
+        current_level: 6,
+        prize: 10000,
+        created_at: Time.parse('2023.03.25, 20:00'),
+        finished_at: Time.parse('2023.03.25, 20:30')
+      ),
+      FactoryGirl.create(
+        :game,
+        user_id: first_user.id,
         is_failed: false,
         current_level: 4,
         prize: 5000,
-        created_at: Time.parse('2023.03.23, 19:00'),
-        finished_at: Time.parse('2023.03.23, 19:10')
+        created_at: Time.parse('2023.03.21, 19:00'),
+        finished_at: Time.parse('2023.03.21, 19:20')
       ),
       FactoryGirl.create(
         :game,
         user_id: first_user.id,
         is_failed: true,
-        current_level: 8,
-        prize: 22000,
+        current_level: 12,
+        prize: 140000,
         created_at: Time.parse('2023.03.23, 23:00'),
         finished_at: Time.parse('2023.03.23, 23:22')
       )
@@ -35,13 +44,16 @@ RSpec.feature 'user views other profile', type: :feature do
     expect(page).to have_content('Андрей')
     expect(page).to have_content('проигрыш')
     expect(page).to have_content('деньги')
-    expect(page).to have_content('23 марта, 19:00')
+    expect(page).to have_content('25 марта, 20:00')
+    expect(page).to have_content('21 марта, 19:00')
     expect(page).to have_content('23 марта, 23:00')
     expect(page).not_to have_content('Сменить имя и пароль')
-    expect(page).to have_content('22 000 ₽')
+    expect(page).to have_content('140 000 ₽')
+    expect(page).to have_content('10 000 ₽')
     expect(page).to have_content('5 000 ₽')
     expect(page).to have_content('50/50')
+    expect(page).to have_content('6')
     expect(page).to have_content('4')
-    expect(page).to have_content('8')
+    expect(page).to have_content('12')
   end
 end
