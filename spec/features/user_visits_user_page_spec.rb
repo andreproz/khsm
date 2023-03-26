@@ -18,7 +18,7 @@ RSpec.feature 'user views other profile', type: :feature do
         :game,
         user_id: first_user.id,
         is_failed: false,
-        current_level: 4,
+        current_level: 7,
         prize: 5000,
         created_at: Time.parse('2023.03.21, 19:00'),
         finished_at: Time.parse('2023.03.21, 19:20')
@@ -53,7 +53,7 @@ RSpec.feature 'user views other profile', type: :feature do
     expect(page).to have_content('5 000 ₽')
     expect(page).to have_content('50/50')
     expect(page).to have_content('6')
-    expect(page).to have_content('4')
+    expect(page).to have_content('7')
     expect(page).to have_content('12')
   end
 end
